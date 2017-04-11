@@ -142,7 +142,7 @@ Search::~Search() { }
 
 void Search::WriteInputToFileOrDie(const string& file,
 				   const vector<value_t>& input) {
-  FILE* f = fopen(file.c_str(), "w");
+  FILE* f = fopen(file.c_str(), "a");
   if (!f) {
     fprintf(stderr, "Failed to open %s.\n", file.c_str());
     perror("Error: ");
@@ -152,6 +152,7 @@ void Search::WriteInputToFileOrDie(const string& file,
   for (size_t i = 0; i < input.size(); i++) {
     fprintf(f, "%lld\n", input[i]);
   }
+  fprintf(f, "\n");
 
   fclose(f);
 }
